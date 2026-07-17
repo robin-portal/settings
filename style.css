@@ -1,0 +1,287 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Container centralisé géant (+50% de largeur pour le confort visuel) */
+.container {
+    width: 100%;
+    max-width: 1850px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    background: white;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 10px;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+/* Barre d'onglets (Boutons de jeux centrés) */
+.game-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.tab-btn {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #444;
+    padding: 10px 24px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.tab-btn:hover {
+    color: #1a1a1a;
+    background-color: #f3f4f6;
+    border-color: #ccc;
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    color: #ffffff;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    box-shadow: none;
+}
+
+/* Sélecteur de compte (Robin / Nathan) */
+.account-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.selector-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.account-btn {
+    background: none;
+    border: 1px solid transparent;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.account-btn:hover {
+    background-color: #eee;
+    color: #1a1a1a;
+}
+
+.account-btn.active {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+/* Zone Crosshair Épurée (Label en haut, Box en dessous) */
+.crosshair-container {
+    display: flex;
+    flex-direction: column; /* Aligne le label en haut et le code en dessous */
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.crosshair-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: lowercase; /* Style "crosshair" épuré demandé */
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.crosshair-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    width: 100%;
+}
+
+.crosshair-box:hover {
+    background-color: #f9fafb;
+    border-color: #1a1a1a;
+}
+
+.crosshair-box code {
+    font-family: monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    user-select: none; /* Bloque la sélection manuelle car le clic copie tout */
+    letter-spacing: 0.5px;
+    transition: color 0.15s ease;
+}
+
+/* État lors de la copie validée */
+.crosshair-box.copied {
+    background-color: #1a1a1a; /* Devient noir minimaliste */
+    border-color: #1a1a1a;
+}
+
+.crosshair-box.copied code {
+    color: #ffffff; /* Texte blanc "COPIÉ !" */
+    letter-spacing: 2px;
+}
+
+/* Container du Prototype */
+.game-viewer-container {
+    width: 100%;
+    background: white;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.game-viewer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    background-color: #0f1923;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Image de fond adaptative */
+.game-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+}
+
+/* Zones cliquables invisibles */
+.click-zone {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0); 
+    border: none;
+    cursor: pointer;
+    outline: none;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.15s ease;
+}
+
+/* Boutons de défilement (Flèches) */
+.scroll-btn {
+    position: absolute;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: rgba(15, 25, 35, 0.9);
+    border: 2px solid #ff4655;
+    color: #ece8e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+.scroll-btn.scroll-down {
+    bottom: 30px;
+}
+
+.scroll-btn.scroll-up {
+    top: 25px;
+}
+
+.scroll-btn.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.scroll-btn:hover {
+    background-color: #ff4655;
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(255, 70, 85, 0.5);
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h5 {
+    font-weight: 400;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+}
